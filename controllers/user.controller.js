@@ -69,45 +69,29 @@ import jwt  from 'jsonwebtoken';
 
 const registerUser = asyncHandler(async(req,res)=>{
     // get details
-    const {fullName,email,username,password,year,branch} = req.body
-    
-    //validation
+    console.log(req.body)
+    const {fullName,email,password,year,branch} = req.body
 
-    if([fullName,email,username,password,year,branch].some((field)=>{
-        field?.trim() === "" 
-    }))
-    {
-        return res.status(201).json({ message: "All field are required"});
-    }
-    //check user already exist
+    
 
     const existeduser = await User.findOne({
-        $or:[{username},{email}]
+        $or:[{email}]
     })
     if(existeduser)
     {
-        return res.status(201).json({ message: "Email or  username already exists"});
+        return res.status(201).json({ message: "Email already exists"});
     }
     // console.log(req )
     //check for images,check for profileImage
-    const profileImageLocalpath = req.files?.profileImage?.[0].path;
+   
     
 
-    //upload them on cloudinary
-    const profileImage = await uploadOnCloudinary(profileImageLocalpath)
-    if(!profileImage)
-    {
-        return res.status(201).json({ message: "Something went wrong while creating the account"});
-    }
-    
     //create user object 
     const verificationToken= Math.floor(100000 + Math.random() * 900000).toString()
     const user = await User.create({
         fullName,
-        profileImage: profileImage.url,
         email,
         password,
-        username : username.toLowerCase(),
         year,
         branch,
         verificationToken,
@@ -457,42 +441,7 @@ const updateUserDetails = asyncHandler(async (req,res,next)=>{
 
 })
 
-const updateprofileImage = asyncHandler(async (req,res)=>{
-    // console.log(req.files);
 
-    const profileImageLocalPath = req.files?.profileImage[0]?.path
-    // console.log(profileImageLocalPath)
-
-    if(!profileImageLocalPath)
-    {
-        throw  new ApiError(400,'profileImage file is missing ')
-    }
-
-    //upload them on cloudinary
-    // console.log(profileImageLocalpath,coverImageLocalPath);
-    const profileImage = await uploadOnCloudinary(profileImageLocalPath)
-    
-
-    if(!profileImage.url)
-    {
-        throw new ApiError(400,"Error while uploading on profileImage")
-    }
-    const publicId = req.user.profileImage
-    // console.log(publicId)
-    deleteFromCloudinary(publicId)//delete old image from clodinary
-
-
-    console.log("Updated Url::",profileImage.url);
-    const updated = await User.findByIdAndUpdate(req.user?._id,{
-        $set:{
-            profileImage:profileImage.url
-        }
-
-    },{new:true}).select("-password")
-
-    return res.status(200)
-    .json(new ApiResponse(200,updated,"profileImage updated"))
-})
 
 const getUserProfile = asyncHandler(async (req,res)=> {
 
@@ -573,5 +522,5 @@ const getUserProfile = asyncHandler(async (req,res)=> {
 } )
 
 
-export {forgotPassword,verifyAndResetPassword,resendVerificationCode,registerUser,loginUser,logoutUser,refreshAccessToken,getCurrentUser,updateUserDetails,updateprofileImage,getUserProfile, VerfiyEmail};
+export {forgotPassword,verifyAndResetPassword,resendVerificationCode,registerUser,loginUser,logoutUser,refreshAccessToken,getCurrentUser,updateUserDetails,getUserProfile, VerfiyEmail};
 
