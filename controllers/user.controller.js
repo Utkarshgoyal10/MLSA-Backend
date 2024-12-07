@@ -225,10 +225,10 @@ const generateAcessAndRefreshTokens =  async (userId)=>{
 
 
 const loginUser = asyncHandler(async(req,res)=>{
-    const {email,username,password}= req.body
+    const {email,password}= req.body
 
-    if(!username && !email){
-        return res.status(201).json({ message: "Username or Email is required"});
+    if(!email){
+        return res.status(201).json({ message: "=Email is required"});
 
     }
     if(!password){
@@ -237,7 +237,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     }
 
     const user = await User.findOne({
-        $or:[{username},{email}]
+        $or:[{email}]
     })
     // console.log(user._id)
     if(!user){
