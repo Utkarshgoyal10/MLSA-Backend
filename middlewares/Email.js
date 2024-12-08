@@ -5,7 +5,7 @@ import { Verification_Email_Template, Welcome_Email_Template } from "./EmailTemp
 export const sendVerificationEamil=async(email,verificationCode)=>{
     try {
      const response=   await transporter.sendMail({
-            from: `"Utkarsh" <${process.env.EMAIL_USER_NAME}>`,
+            from: `"OTP-Verification" <${process.env.EMAIL_USER_NAME}>`,
 
             to: email, // list of receivers
             subject: "Verify your Email", // Subject line
@@ -20,7 +20,7 @@ export const sendVerificationEamil=async(email,verificationCode)=>{
 export const senWelcomeEmail=async(email,name)=>{
     try {
      const response=   await transporter.sendMail({
-            from: `"Utkarsh" <${process.env.EMAIL_USER_NAME}>`,
+            from: `"Welcome to MLSA Community" <${process.env.EMAIL_USER_NAME}>`,
 
             to: email, // list of receivers
             subject: "Welcome Email", // Subject line

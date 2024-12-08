@@ -22,7 +22,7 @@ export const Verification_Email_Template = `
               border: 1px solid #ddd;
           }
           .header {
-              background-color: #4CAF50;
+              background-color: #007BFF;
               color: white;
               padding: 20px;
               text-align: center;
@@ -38,9 +38,9 @@ export const Verification_Email_Template = `
               display: block;
               margin: 20px 0;
               font-size: 22px;
-              color: #4CAF50;
-              background: #e8f5e9;
-              border: 1px dashed #4CAF50;
+              color: #007BFF;
+              background: #ecf0f7;
+              border: 1px dashed #007BFF;
               padding: 10px;
               text-align: center;
               border-radius: 5px;
@@ -70,7 +70,7 @@ export const Verification_Email_Template = `
               <p>If you did not create an account, no further action is required. If you have any questions, feel free to contact our support team.</p>
           </div>
           <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} Your Company. All rights reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} MLSA@KIET. All rights reserved.</p>
           </div>
       </div>
   </body>
@@ -86,7 +86,7 @@ export const Welcome_Email_Template = `
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Welcome to Our Community</title>
+      <title>Welcome to MLSA Community</title>
       <style>
           body {
               font-family: Arial, sans-serif;
@@ -151,7 +151,7 @@ export const Welcome_Email_Template = `
   </head>
   <body>
       <div class="container">
-          <div class="header">Welcome to Our Community!</div>
+          <div class="header">Welcome to MLSA Community!</div>
           <div class="content">
               <p class="welcome-message">Hello {name},</p>
               <p>We’re thrilled to have you join us! Your registration was successful, and we’re committed to providing you with the best experience possible.</p>
@@ -161,11 +161,11 @@ export const Welcome_Email_Template = `
                   <li>Stay informed by checking out our blog for the latest updates and tips.</li>
                   <li>Reach out to our support team if you have any questions or need assistance.</li>
               </ul>
-              <a href="#" class="button">Get Started</a>
+              <a href="https://mlsa-kiet.vercel.app" class="button">Get Started</a>
               <p>If you need any help, don’t hesitate to contact us. We’re here to support you every step of the way.</p>
           </div>
           <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} Your Company. All rights reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} MLSA@KIET. All rights reserved.</p>
           </div>
       </div>
   </body>
