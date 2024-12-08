@@ -8,7 +8,10 @@ const addMember = async (req, res) => {
 
     const {name,domain,linkedlnIdId} = req.body
 
-
+    const existingMember = await Member.findOne({ linkedlnIdId });
+    if (existingMember) {
+        return res.status(201).json({ message: "LinkedIn ID already exists" });
+    }
 
     const profileImageLocalpath = req.files?.profileImage?.[0].path;
     
@@ -36,7 +39,7 @@ const addMember = async (req, res) => {
     const memberUploaded = await Member.findById(member._id);
 
     if (!memberUploaded) {
-        res.status(500).json({ message: "upload failed please try again !!!" });
+        res.status(202).json({ message: "upload failed please try again !!!" });
     }
 
     return res
