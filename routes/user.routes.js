@@ -16,4 +16,4 @@ router.route( '/userProfile/:username' ).get(verifyJWT,getUserProfile );
 export default router
 
 
-//kya tuuh iska fronted ek baar apne backend backend se connect kar sakta taaki isk event page dekh sku 
+
